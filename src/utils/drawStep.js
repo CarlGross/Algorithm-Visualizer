@@ -6,7 +6,9 @@ export function drawStep(ctx, step, width, height){
         const x = index * barWidth;
         const barHeight = (value/maxValue) * height;
         const y = height - barHeight;
-        ctx.fillStyle = step.compared.includes(index) ? "red": "green";
+        const color = step.swapped ? "green": "red"
+        ctx.fillStyle = step.compared.includes(index) ? color: "grey";
+        
         ctx.fillRect(x, y, barWidth - 2, barHeight);
     }); 
 }
