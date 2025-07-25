@@ -6,10 +6,12 @@ import 'bootstrap'
 import CanvasVisualizer from './components/CanvasVisualizer'
 import { bubbleSort } from './utils/BubbleSort'
 import { selectionSort } from './utils/selectionSort'
+import { insertionSort } from './utils/insertionSort'
 
 function App() {
   const [bubbleSteps, setBubbleSteps] = useState(null);
   const [selectionSteps, setSelectionSteps] = useState(null);
+  const [insertionSteps, setInsertionSteps] = useState(null);
 
   const startVisualization = () => {
     const array = Array.from({length: 30}, () => Math.floor(Math.random() * 60) + 1);
@@ -17,6 +19,8 @@ function App() {
     setBubbleSteps(recordedSteps);
     recordedSteps = selectionSort(array);
     setSelectionSteps(recordedSteps);
+    recordedSteps = insertionSort(array);
+    setInsertionSteps(recordedSteps);
   };
 
   return (
@@ -25,9 +29,11 @@ function App() {
         Start
       </button>
       <h1>Bubble Sort</h1>
-      {bubbleSteps &&  (console.log('STEPS:', bubbleSteps), <CanvasVisualizer steps={bubbleSteps} />)}
+      {bubbleSteps &&  (console.log('BUBBLE STEPS:', bubbleSteps), <CanvasVisualizer steps={bubbleSteps} />)}
       <h1>Selection Sort</h1>
-      {selectionSteps &&  (console.log('STEPS:', selectionSteps), <CanvasVisualizer steps={selectionSteps} />)}
+      {selectionSteps &&  (console.log('SELECTION STEPS:', selectionSteps), <CanvasVisualizer steps={selectionSteps} />)}
+      <h1>Insertion Sort</h1>
+      {insertionSteps && (console.log('INSERTION STEPS:', insertionSteps), <CanvasVisualizer steps={insertionSteps} />)}
     </div>
   );
 }
