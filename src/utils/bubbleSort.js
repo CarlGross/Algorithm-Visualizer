@@ -1,4 +1,4 @@
-export function bubbleSort(inputArray){
+export function bubbleSortGetSteps(inputArray){
     const steps = [];
     const array = [...inputArray];
     for (let i = 0; i < array.length - 1; i++){
@@ -7,7 +7,8 @@ export function bubbleSort(inputArray){
             steps.push({
                 array: [...array],
                 compared: [j, j+1],
-                swapped: false
+                swapped: false,
+                partition: false
 
         });
         //SwappedHighlight
@@ -17,11 +18,22 @@ export function bubbleSort(inputArray){
             steps.push({
                 array: [...array],
                 compared: [j, j+1],
-                swapped: true
+                swapped: true,
+                partition: false
             });
         }
         }
     }
     return steps;
-
+}
+export function bubbleSort(inputArray){
+    const array = [...inputArray];
+    for (let i = 0; i < array.length - 1; i++){
+        
+        for (let j = 0; j < array.length - 1 - i; j++){
+        if (array[j] > array[j+1]){
+            [array[j], array[j+1]] = [array[j+1], array[j]];
+        }
+        }
+    }
 }

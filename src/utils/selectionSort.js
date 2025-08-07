@@ -1,4 +1,4 @@
-export function selectionSort(inputArray){
+export function selectionSortGetSteps(inputArray){
     const steps = [];
     const array = [...inputArray];
     for (let i = 0; i < array.length - 1; i++){
@@ -7,7 +7,8 @@ export function selectionSort(inputArray){
             steps.push({
                 array: [...array],
                 compared: j==min ? [min]: [min, j],
-                swapped: false
+                swapped: false,
+                partition: false
         });
         if (array[j] < array[min]){
             min = j;
@@ -17,11 +18,22 @@ export function selectionSort(inputArray){
         steps.push({
             array: [...array],
             compared: [i, min],
-            swapped: true
-        })
-
-
+            swapped: true,
+            partition: false
+        });
     }
 
     return steps;
+}
+export function selectionSort(inputArray){
+    const array = [...inputArray];
+    for (let i = 0; i < array.length - 1; i++){
+        let min = i;
+        for (let j = i; j < array.length; j++){
+        if (array[j] < array[min]){
+            min = j;
+        }
+        }
+        [array[i], array[min]] = [array[min], array[i]];
+    }
 }
