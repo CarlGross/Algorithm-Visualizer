@@ -12,13 +12,16 @@ import { insertionSort } from './utils/insertionSort'
 import { insertionSortGetSteps } from './utils/insertionSort'
 import { mergeSortGetSteps } from './utils/mergeSort'
 import { mergeSort } from './utils/mergeSort'
+import { quickSortGetSteps } from './utils/quickSort'
+import { quickSort } from './utils/quickSort'
 
 function App() {
   const [bubbleSteps, setBubbleSteps] = useState(null);
   const [selectionSteps, setSelectionSteps] = useState(null);
   const [insertionSteps, setInsertionSteps] = useState(null);
   const [mergeSteps, setMergeSteps] = useState(null);
-  let bubbleTime=0, selectionTime=0, insertionTime=0, mergeTime=0;
+  const [quickSteps, setQuickSteps] = useState(null);
+  let bubbleTime=0, selectionTime=0, insertionTime=0, mergeTime=0, quickTime=0;
 
   const startVisualization = () => {
     const array = Array.from({length: 100}, () => Math.floor(Math.random() * 60) + 1);
@@ -51,12 +54,20 @@ function App() {
     t1 = performance.now();
     mergeTime = (t1-t0)/recordedSteps.length;
 
-    const minTime = Math.min(bubbleTime, selectionTime, insertionTime, mergeTime);
+    recordedSteps = quickSortGetSteps(array);
+    setQuickSteps(recordedSteps);
+    t0 = performance.now();
+    quickSort(array);
+    t1 = performance.now();
+    quickTime = (t1-t0)/recordedSteps.length;
+
+    const minTime = Math.min(bubbleTime, selectionTime, insertionTime, mergeTime, quickTime);
     const mult = 300;
     bubbleTime = mult * (minTime/bubbleTime);
     selectionTime = mult * (minTime/selectionTime);
     insertionTime = mult * (minTime/insertionTime);
     mergeTime = mult * (minTime/mergeTime);
+    quickTime = mult * (minTime/quickTime);
 
 
   };
@@ -73,7 +84,9 @@ function App() {
       <h1>Insertion Sort</h1>
       {insertionSteps && (console.log('INSERTION STEPS:', insertionSteps), <CanvasVisualizer steps={insertionSteps} interval={insertionTime} />)}
       <h1>Merge Sort</h1>
-      {mergeSteps && (console.log('Merge STEPS:', mergeSteps), <CanvasVisualizer steps={mergeSteps} interval={mergeTime}/>)}
+      {mergeSteps && (console.log('MERGE STEPS:', mergeSteps), <CanvasVisualizer steps={mergeSteps} interval={mergeTime}/>)}
+      <h1>Quick Sort</h1>
+      {quickSteps && (console.log('QUICK STEPS:', quickSteps), <CanvasVisualizer steps={quickSteps} interval={quickTime}/>)}
     </div>
   );
 }
