@@ -1,6 +1,7 @@
-import { drawStep } from "../utils/drawStep";
+import { drawStep } from "../../utils/drawStep";
 import { useEffect, useState, useRef } from "react";
-const CanvasVisualizer = ({steps, interval=300, width=600, height=400})=>{
+import styles from "./CanvasVisualizer.module.css";
+const CanvasVisualizer = ({steps, interval=300, width=300, height=200, text=""})=>{
     const ref = useRef();
     const [currStep, setCurrStep] = useState(0);
     useEffect(() => {
@@ -23,6 +24,7 @@ const CanvasVisualizer = ({steps, interval=300, width=600, height=400})=>{
 
         return () => clearTimeout(timer);
     }, [currStep])
-    return <canvas ref={ref} width={width} height={height} />
+    return <div className={styles.wrapper}><h1>{text}</h1><canvas ref={ref} className={styles.canvas}width={width} height={height} /></div>
 }
+
 export default CanvasVisualizer;
