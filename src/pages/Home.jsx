@@ -1,3 +1,5 @@
+import styles from "./Home.module.css";
+
 export default function Home(){
-    return <h1>hi</h1>;
+    return <div className={styles.title}>Algorithm Visualizer</div>;
 }

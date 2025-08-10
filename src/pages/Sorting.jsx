@@ -11,6 +11,7 @@ import { mergeSortGetSteps } from './../utils/mergeSort'
 import { mergeSort } from './../utils/mergeSort'
 import { quickSortGetSteps } from './../utils/quickSort'
 import { quickSort } from './../utils/quickSort'
+import { Link } from 'react-router-dom'
 
 function Sorting() {
   const [bubbleSteps, setBubbleSteps] = useState(null);
@@ -74,7 +75,7 @@ function Sorting() {
       <button className="btn btn-primary my-3" onClick={startVisualization}>
         Start
       </button>
-      {bubbleSteps &&  (console.log('BUBBLE STEPS:', bubbleSteps), <CanvasVisualizer steps={bubbleSteps} interval={bubbleTime} text={"Bubble Sort"}/>)}
+      {bubbleSteps &&  (console.log('BUBBLE STEPS:', bubbleSteps), <Link to="/bubble"><CanvasVisualizer steps={bubbleSteps} interval={bubbleTime} text={"Bubble Sort"}/></Link>)}
       {selectionSteps &&  (console.log('SELECTION STEPS:', selectionSteps), <CanvasVisualizer steps={selectionSteps} interval={selectionTime} text={"Selection Sort"}/>)}
       {insertionSteps && (console.log('INSERTION STEPS:', insertionSteps), <CanvasVisualizer steps={insertionSteps} interval={insertionTime} text={"Insertion Sort"}/>)}
       {mergeSteps && (console.log('MERGE STEPS:', mergeSteps), <CanvasVisualizer steps={mergeSteps} interval={mergeTime} text={"Merge Sort"}/>)}
