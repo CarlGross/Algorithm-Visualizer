@@ -1,16 +1,11 @@
 import { useState } from 'react'
 import 'bootstrap'
 import CanvasVisualizer from './../components/CanvasVisualizer/CanvasVisualizer'
-import { bubbleSort } from './../utils/BubbleSort'
-import { bubbleSortGetSteps } from './../utils/BubbleSort'
-import { selectionSort } from './../utils/selectionSort'
-import { selectionSortGetSteps } from './../utils/selectionSort'
-import { insertionSort } from './../utils/insertionSort'
-import { insertionSortGetSteps } from './../utils/insertionSort'
-import { mergeSortGetSteps } from './../utils/mergeSort'
-import { mergeSort } from './../utils/mergeSort'
-import { quickSortGetSteps } from './../utils/quickSort'
-import { quickSort } from './../utils/quickSort'
+import { bubbleSort, bubbleSortGetSteps } from './../utils/BubbleSort'
+import { selectionSort, selectionSortGetSteps } from './../utils/selectionSort'
+import { insertionSort, insertionSortGetSteps } from './../utils/insertionSort'
+import { mergeSort, mergeSortGetSteps } from './../utils/mergeSort'
+import { quickSort, quickSortGetSteps } from './../utils/quickSort'
 import { Link } from 'react-router-dom'
 
 function Sorting() {
@@ -75,11 +70,11 @@ function Sorting() {
       <button className="btn btn-primary my-3" onClick={startVisualization}>
         Start
       </button>
-      {bubbleSteps &&  (console.log('BUBBLE STEPS:', bubbleSteps), <Link to="/bubble"><CanvasVisualizer steps={bubbleSteps} interval={bubbleTime} text={"Bubble Sort"}/></Link>)}
-      {selectionSteps &&  (console.log('SELECTION STEPS:', selectionSteps), <CanvasVisualizer steps={selectionSteps} interval={selectionTime} text={"Selection Sort"}/>)}
-      {insertionSteps && (console.log('INSERTION STEPS:', insertionSteps), <CanvasVisualizer steps={insertionSteps} interval={insertionTime} text={"Insertion Sort"}/>)}
-      {mergeSteps && (console.log('MERGE STEPS:', mergeSteps), <CanvasVisualizer steps={mergeSteps} interval={mergeTime} text={"Merge Sort"}/>)}
-      {quickSteps && (console.log('QUICK STEPS:', quickSteps), <CanvasVisualizer steps={quickSteps} interval={quickTime} text={"Quick Sort"}/>)}
+      {bubbleSteps &&  <Link to="/bubble"><CanvasVisualizer steps={bubbleSteps} interval={bubbleTime} text={"Bubble Sort"}/></Link>}
+      {selectionSteps &&  <Link to="/selection"><CanvasVisualizer steps={selectionSteps} interval={selectionTime} text={"Selection Sort"}/></Link>}
+      {insertionSteps && <Link to="/insertion"><CanvasVisualizer steps={insertionSteps} interval={insertionTime} text={"Insertion Sort"}/></Link>}
+      {mergeSteps && <CanvasVisualizer steps={mergeSteps} interval={mergeTime} text={"Merge Sort"}/>}
+      {quickSteps && <CanvasVisualizer steps={quickSteps} interval={quickTime} text={"Quick Sort"}/>}
     </div>
   );
 }

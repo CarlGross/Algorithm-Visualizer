@@ -52,7 +52,7 @@ function quickSortStepHelper(arr, start, end, steps){
 }
 export function quickSort(inputArray){
     const arr = [...inputArray];
-    quickSortHelper(arr, 0, arr.length, steps);
+    quickSortHelper(arr, 0, arr.length);
 }
 function quickSortHelper(arr, start, end){
     const pivot = Math.floor((start+end)/2);
@@ -77,9 +77,9 @@ function quickSortHelper(arr, start, end){
         arr[start + i+left.length + 1]=right[i];
     }
     if (left.length > 1){
-        quickSortHelper(arr, start, start+left.length, steps);
+        quickSortHelper(arr, start, start+left.length);
     }
     if (right.length > 1){
-        quickSortHelper(arr, start+left.length+1, end, steps);
+        quickSortHelper(arr, start+left.length+1, end);
     }
 }

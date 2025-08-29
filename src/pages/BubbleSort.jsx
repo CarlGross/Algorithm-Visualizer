@@ -23,7 +23,7 @@ export default function BubbleSort(){
      </p>
      <p>
         Description: <br></br>
-        The bubble sort works by moving the largest value to the top, like an air bubble in water. It iterates from the first index onwards, compares adjacent
+        It moves the largest value to the top, like an air bubble in water. It iterates from the first index onwards, compares adjacent
          indexes, and swaps the values if the index to the left has a larger value. Then, because the largest value is on the top, the next iteration can ignore that index. The best case would occur when the list is already completely sorted. 
          This requires there to be a boolean which ends the sort if no swaps occured during an iteration.
      </p>
