@@ -73,8 +73,8 @@ function Sorting() {
       {bubbleSteps &&  <Link to="/bubble"><CanvasVisualizer steps={bubbleSteps} interval={bubbleTime} text={"Bubble Sort"}/></Link>}
       {selectionSteps &&  <Link to="/selection"><CanvasVisualizer steps={selectionSteps} interval={selectionTime} text={"Selection Sort"}/></Link>}
       {insertionSteps && <Link to="/insertion"><CanvasVisualizer steps={insertionSteps} interval={insertionTime} text={"Insertion Sort"}/></Link>}
-      {mergeSteps && <CanvasVisualizer steps={mergeSteps} interval={mergeTime} text={"Merge Sort"}/>}
-      {quickSteps && <CanvasVisualizer steps={quickSteps} interval={quickTime} text={"Quick Sort"}/>}
+      {mergeSteps && <Link to="/merge"><CanvasVisualizer steps={mergeSteps} interval={mergeTime} text={"Merge Sort"}/></Link>}
+      {quickSteps && <Link to="/quick"><CanvasVisualizer steps={quickSteps} interval={quickTime} text={"Quick Sort"}/></Link>}
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function InsertionSort(){
         Start
       </button>
       <br></br>
-      {insertionSteps && <CanvasVisualizer steps={insertionSteps} interval={300} text={"insertion Sort"} width={600} height={400}/>}
+      {insertionSteps && <CanvasVisualizer steps={insertionSteps} interval={300} text={"Insertion Sort"} width={600} height={400}/>}
     </div>
     </div>
     );

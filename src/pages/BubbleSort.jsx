@@ -33,7 +33,7 @@ export default function BubbleSort(){
         Start
       </button>
       <br></br>
-      {bubbleSteps &&  (console.log('BUBBLE STEPS:', bubbleSteps), <CanvasVisualizer steps={bubbleSteps} interval={300} text={"Bubble Sort"} width={600} height={400}/>)}
+      {bubbleSteps &&  <CanvasVisualizer steps={bubbleSteps} interval={300} text={"Bubble Sort"} width={600} height={400}/>}
     </div>
     </div>
     );
