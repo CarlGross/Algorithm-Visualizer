@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom"
 import Home from "./pages/Home"
 import Sorting from "./pages/Sorting"
 import BubbleSort from "./pages/BubbleSort"
@@ -24,6 +24,7 @@ function App() {
         <Route path="/insertion" element={<InsertionSort/>}/>
         <Route path="/merge" element={<MergeSort/>}/>
         <Route path="/quick" element={<QuickSort/>}/>
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
 

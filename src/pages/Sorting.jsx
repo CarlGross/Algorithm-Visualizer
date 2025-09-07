@@ -7,6 +7,7 @@ import { insertionSort, insertionSortGetSteps } from './../utils/insertionSort'
 import { mergeSort, mergeSortGetSteps } from './../utils/mergeSort'
 import { quickSort, quickSortGetSteps } from './../utils/quickSort'
 import { Link } from 'react-router-dom'
+import styles from "./Sort.module.css"
 
 function Sorting() {
   const [bubbleSteps, setBubbleSteps] = useState(null);
@@ -66,15 +67,22 @@ function Sorting() {
   };
 
   return (
-    <div className="container text-center mt-4">
-      <button className="btn btn-primary my-3" onClick={startVisualization}>
+    <div className={styles.page}>
+      <div className={styles.header}>
+      Click button to start and click on a sort to learn more. <br></br> <br></br>
+      <div className={styles.button}>
+      <button className="btn btn-primary my-3"  onClick={startVisualization}>
         Start
       </button>
+      </div>
+      </div>
+      <div className={styles.tile}>
       {bubbleSteps &&  <Link to="/bubble"><CanvasVisualizer steps={bubbleSteps} interval={bubbleTime} text={"Bubble Sort"}/></Link>}
       {selectionSteps &&  <Link to="/selection"><CanvasVisualizer steps={selectionSteps} interval={selectionTime} text={"Selection Sort"}/></Link>}
       {insertionSteps && <Link to="/insertion"><CanvasVisualizer steps={insertionSteps} interval={insertionTime} text={"Insertion Sort"}/></Link>}
       {mergeSteps && <Link to="/merge"><CanvasVisualizer steps={mergeSteps} interval={mergeTime} text={"Merge Sort"}/></Link>}
       {quickSteps && <Link to="/quick"><CanvasVisualizer steps={quickSteps} interval={quickTime} text={"Quick Sort"}/></Link>}
+      </div>
     </div>
   );
 }

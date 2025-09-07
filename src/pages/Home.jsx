@@ -7,7 +7,8 @@ export default function Home(){
      <p>
       This application is intended to teach or remind users of how different algorithms work.
       Currently, only certain sorting algorithms are visualized, but there are plans to add many
-      other types of algorithms.  
+      other types of algorithms. Every algorithm can be clicked on in order to see time complexities
+      and a description. 
      </p>   
     </div>;
 }
