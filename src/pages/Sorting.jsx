@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import 'bootstrap'
 import CanvasVisualizer from './../components/CanvasVisualizer/CanvasVisualizer'
-import { bubbleSort, bubbleSortGetSteps } from './../utils/BubbleSort'
+import { heapSort, heapSortGetSteps } from '../utils/heapSort'
+import { bubbleSort, bubbleSortGetSteps } from './../utils/bubbleSort'
 import { selectionSort, selectionSortGetSteps } from './../utils/selectionSort'
 import { insertionSort, insertionSortGetSteps } from './../utils/insertionSort'
 import { mergeSort, mergeSortGetSteps } from './../utils/mergeSort'
@@ -15,7 +16,8 @@ function Sorting() {
   const [insertionSteps, setInsertionSteps] = useState(null);
   const [mergeSteps, setMergeSteps] = useState(null);
   const [quickSteps, setQuickSteps] = useState(null);
-  let bubbleTime=0, selectionTime=0, insertionTime=0, mergeTime=0, quickTime=0;
+  const [heapSteps, setHeapSteps] = useState(null);
+  let bubbleTime=0, selectionTime=0, insertionTime=0, mergeTime=0, quickTime=0, heapTime=0;
 
   const startVisualization = () => {
     const array = Array.from({length: 100}, () => Math.floor(Math.random() * 60) + 1);
@@ -55,13 +57,21 @@ function Sorting() {
     t1 = performance.now();
     quickTime = (t1-t0)/recordedSteps.length;
 
-    const minTime = Math.min(bubbleTime, selectionTime, insertionTime, mergeTime, quickTime);
+    recordedSteps = heapSortGetSteps(array);
+    setHeapSteps(recordedSteps);
+    t0 = performance.now();
+    heapSort(array);
+    t1 = performance.now();
+    heapTime = (t1-t0)/recordedSteps.length;
+
+    const minTime = Math.min(bubbleTime, selectionTime, insertionTime, mergeTime, quickTime, heapTime);
     const mult = 400;
     bubbleTime = mult * (minTime/bubbleTime);
     selectionTime = mult * (minTime/selectionTime);
     insertionTime = mult * (minTime/insertionTime);
     mergeTime = mult * (minTime/mergeTime);
     quickTime = mult * (minTime/quickTime);
+    heapTime = mult * (minTime/heapTime);
 
 
   };
@@ -82,6 +92,7 @@ function Sorting() {
       {insertionSteps && <Link to="/insertion"><CanvasVisualizer steps={insertionSteps} interval={insertionTime} text={"Insertion Sort"}/></Link>}
       {mergeSteps && <Link to="/merge"><CanvasVisualizer steps={mergeSteps} interval={mergeTime} text={"Merge Sort"}/></Link>}
       {quickSteps && <Link to="/quick"><CanvasVisualizer steps={quickSteps} interval={quickTime} text={"Quick Sort"}/></Link>}
+      {heapSteps && <CanvasVisualizer steps={heapSteps} interval={heapTime} text={"Heap Sort"}/>}
       </div>
     </div>
   );
