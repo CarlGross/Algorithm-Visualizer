@@ -6,6 +6,7 @@ import SelectionSort from "./pages/SelectionSort"
 import InsertionSort from "./pages/InsertionSort"
 import MergeSort from "./pages/MergeSort"
 import QuickSort from "./pages/QuickSort"
+import HeapSort from "./pages/HeapSort"
 import "./App.css"
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/insertion" element={<InsertionSort/>}/>
         <Route path="/merge" element={<MergeSort/>}/>
         <Route path="/quick" element={<QuickSort/>}/>
+        <Route path="/heap" element={<HeapSort/>}/>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 

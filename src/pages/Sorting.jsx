@@ -17,62 +17,76 @@ function Sorting() {
   const [mergeSteps, setMergeSteps] = useState(null);
   const [quickSteps, setQuickSteps] = useState(null);
   const [heapSteps, setHeapSteps] = useState(null);
-  let bubbleTime=0, selectionTime=0, insertionTime=0, mergeTime=0, quickTime=0, heapTime=0;
+  const [bubbleTime, setBT] = useState(null);
+  const [selectionTime, setST] = useState(null);
+  const [insertionTime, setIT] = useState(null);
+  const [mergeTime, setMT] = useState(null);
+  const [quickTime, setQT] = useState(null);
+  const [heapTime, setHT] = useState(null);
+
 
   const startVisualization = () => {
     const array = Array.from({length: 100}, () => Math.floor(Math.random() * 60) + 1);
 
-    let recordedSteps = bubbleSortGetSteps(array);
-    setBubbleSteps(recordedSteps);
+    let bs = bubbleSortGetSteps(array);
     let t0 = performance.now();
     bubbleSort(array);
     let t1 = performance.now();
-    bubbleTime = (t1-t0)/recordedSteps.length;
+    let bt= t1-t0;
 
-    recordedSteps = selectionSortGetSteps(array);
-    setSelectionSteps(recordedSteps);
+    let ss = selectionSortGetSteps(array);
     t0 = performance.now();
     selectionSort(array);
     t1 = performance.now();
-    selectionTime = (t1-t0)/recordedSteps.length;
+    let st = t1-t0;
 
-    recordedSteps = insertionSortGetSteps(array);
-    setInsertionSteps(recordedSteps);
+    let is = insertionSortGetSteps(array);
     t0 = performance.now();
     insertionSort(array);
     t1 = performance.now();
-    insertionTime = (t1-t0)/recordedSteps.length;
+    let it = (t1-t0);
 
-    recordedSteps = mergeSortGetSteps(array);
-    setMergeSteps(recordedSteps);
+    let ms = mergeSortGetSteps(array);
     t0 = performance.now();
     mergeSort(array);
     t1 = performance.now();
-    mergeTime = (t1-t0)/recordedSteps.length;
+    let mt = t1-t0;
+     console.log('%f', mt);
 
-    recordedSteps = quickSortGetSteps(array);
-    setQuickSteps(recordedSteps);
+    let qs = quickSortGetSteps(array);
     t0 = performance.now();
     quickSort(array);
     t1 = performance.now();
-    quickTime = (t1-t0)/recordedSteps.length;
+    let qt = (t1-t0);
 
-    recordedSteps = heapSortGetSteps(array);
-    setHeapSteps(recordedSteps);
+    let hs = heapSortGetSteps(array);
     t0 = performance.now();
     heapSort(array);
     t1 = performance.now();
-    heapTime = (t1-t0)/recordedSteps.length;
+    let ht = (t1-t0);
+    console.log('%f', ht);
 
-    const minTime = Math.min(bubbleTime, selectionTime, insertionTime, mergeTime, quickTime, heapTime);
-    const mult = 400;
-    bubbleTime = mult * (minTime/bubbleTime);
-    selectionTime = mult * (minTime/selectionTime);
-    insertionTime = mult * (minTime/insertionTime);
-    mergeTime = mult * (minTime/mergeTime);
-    quickTime = mult * (minTime/quickTime);
-    heapTime = mult * (minTime/heapTime);
+    const minTime = Math.min(bt, st, it, mt, qt, ht);
+    const mult = 10000;
+    console.log('%f',  mult * (mt/minTime) / ms.length);
+    console.log('steps: %d', ms.length);
+    console.log('%f', mt / ms.length);
+    console.log('%f', mult * (ht/minTime) / hs.length);
+    console.log('steps: %d', hs.length);
+    console.log('%f', ht / hs.length);
 
+    setBT(mult * (bt/minTime) / bs.length);
+    setST(mult * (st/minTime) / ss.length);
+    setIT(mult * (it/minTime) / is.length);
+    setMT(mult * (mt/minTime) / ms.length);
+    setQT(mult * (qt/minTime) / qs.length);
+    setHT(mult * (ht/minTime) / hs.length);
+    setBubbleSteps(bs);
+    setSelectionSteps(ss);
+    setInsertionSteps(is);
+    setMergeSteps(ms);
+    setQuickSteps(qs);
+    setHeapSteps(hs);
 
   };
 
@@ -92,7 +106,7 @@ function Sorting() {
       {insertionSteps && <Link to="/insertion"><CanvasVisualizer steps={insertionSteps} interval={insertionTime} text={"Insertion Sort"}/></Link>}
       {mergeSteps && <Link to="/merge"><CanvasVisualizer steps={mergeSteps} interval={mergeTime} text={"Merge Sort"}/></Link>}
       {quickSteps && <Link to="/quick"><CanvasVisualizer steps={quickSteps} interval={quickTime} text={"Quick Sort"}/></Link>}
-      {heapSteps && <CanvasVisualizer steps={heapSteps} interval={heapTime} text={"Heap Sort"}/>}
+      {heapSteps && <Link to="/heap"><CanvasVisualizer steps={heapSteps} interval={heapTime} text={"Heap Sort"}/></Link>}
       </div>
     </div>
   );
