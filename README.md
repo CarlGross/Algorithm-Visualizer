@@ -6,6 +6,8 @@ a description and in a slower and smaller visualization.
   
 Link to the project: https://carlgross.github.io/Algorithm-Visualizer/
 
+![](visualizer.png)
+
 # Tech Stack
 Front end: HTML/CSS/JavaScript/React     
 Deployment: GitHub Pages
